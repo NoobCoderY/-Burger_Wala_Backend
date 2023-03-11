@@ -1,7 +1,8 @@
 import express from "express"
 import passport from "passport";
 const router=express.Router();
-import { myProfile,logout } from "../controllers/userController.js";
+import { myProfile,logout ,getAdminUsers} from "../controllers/userController.js";
+import { isAuthenticated,authorizeAdmin } from "../middlewares/auth.js";
 
 
 router.get(
@@ -19,9 +20,11 @@ router.get(
     
   )
 
-  router.get("/me", myProfile);
+  router.get("/me", isAuthenticated, myProfile);
 
   router.get("/logout", logout);
+
+  router.get("/admin/users", isAuthenticated, authorizeAdmin, getAdminUsers);
 
 
 
