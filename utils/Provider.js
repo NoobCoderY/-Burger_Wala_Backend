@@ -6,9 +6,9 @@ export const connectPassport = () => {
   passport.use(
     new GoogleStrategy(
       {
-        clientID: "486438210773-v4trafnbh7arj2tgbbbs2huvg3eh1fna.apps.googleusercontent.com",
-        clientSecret: "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",
-        callbackURL: "http://localhost:8080/login",
+        clientID: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        callbackURL: process.env.GOOGLE_CALLBACK_URL,
       },
       async function (accessToken, refreshToken, profile, done) {
         const user = await User.findOne({

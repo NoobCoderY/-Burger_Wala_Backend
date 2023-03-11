@@ -1,4 +1,5 @@
 import express, { urlencoded } from "express";
+import dotenv from "dotenv";
 import { connectPassport } from "./utils/Provider.js";
 import session from "express-session";
 import cookieParser from "cookie-parser";
@@ -6,6 +7,9 @@ import passport from "passport";
 import cors from "cors";
 
 const app = express();
+dotenv.config({
+  path: "./config/config.env",
+});
 import { errorMiddleware } from "./middlewares/errorMiddleware.js";
 //imports Routes
 import userRouter from "./routes/user.js";
