@@ -14,7 +14,9 @@ router.get(
   );
 
   router.get(
-    "/login", passport.authenticate("google"),(req,res,next)=>{
+    "/login", passport.authenticate("google",{
+      successRedirect:process.env.FRONTEND_URL
+    }),(req,res,next)=>{
                     res.send("done")
     }
     
